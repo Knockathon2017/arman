@@ -1,49 +1,43 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
     crypto = require('crypto');
-var UserFileSchema = new Schema({
+var UserPointsSchema = new Schema({
 
 	username: {
 		type: String,
 		trim: true,
-		unique:true,
-        required:true		
+        unique:true,
+        required:true
 	},
 
-	file: {
-		type: String
+	points: {
+		type: Number,
+		required: true
 	},
 
-	geo_location: {
-		lat: {
-			type: Number
-		},
+	last_point_added: {
 
-		lon: {
-			type: Number
-		}
+		type: Number
 	},
 
 	created_date: {
 		type: Date,
 		default: Date.now
-
 	},
 
-	updated_date: {
+	last_updated_date: {
 		type: Date
 	}
 
  });
 
-UserFileSchema.pre('save', function(next){
+UserPointsSchema.pre('save', function(next){
   now = new Date();
-  this.updated_date = now;
+  this.last_updated_date = now;
   if ( !this.created_date ) {
     this.created_date = now;
   }
   next();
 });
 
-
-mongoose.model('UserFile', UserFileSchema);
+mongoose.model('UserPoints', UserPointsSchema);

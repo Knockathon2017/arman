@@ -26,7 +26,8 @@ var LocationSchema = new Schema({
 	},
 
 	created_date: {
-		type: Date
+		type: Date,
+		default: Date.now
 	},
 
 	updated_date: {
@@ -38,5 +39,14 @@ var LocationSchema = new Schema({
 Location.set('toJSON', {
     getters: true,
     virtuals: true
+});
+
+LocationSchema.pre('save', function(next){
+  now = new Date();
+  this.updated_date = now;
+  if ( !this.created_date ) {
+    this.created_date = now;
+  }
+  next();
 });
 mongoose.model('Location', LocationSchema);

@@ -1,42 +1,33 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
     crypto = require('crypto');
-var UserFileSchema = new Schema({
+var UserChallengeCompletedSchema = new Schema({
 
 	username: {
 		type: String,
 		trim: true,
 		unique:true,
-        required:true		
+        required:true	
 	},
 
-	file: {
-		type: String
-	},
-
-	geo_location: {
-		lat: {
-			type: Number
-		},
-
-		lon: {
-			type: Number
-		}
+	location_detail: {
+		type: String,
+		required: true
 	},
 
 	created_date: {
 		type: Date,
 		default: Date.now
-
 	},
 
 	updated_date: {
 		type: Date
 	}
-
  });
 
-UserFileSchema.pre('save', function(next){
+
+
+UserChallengeCompletedSchema.pre('save', function(next){
   now = new Date();
   this.updated_date = now;
   if ( !this.created_date ) {
@@ -45,5 +36,4 @@ UserFileSchema.pre('save', function(next){
   next();
 });
 
-
-mongoose.model('UserFile', UserFileSchema);
+mongoose.model('UserChallengeCompleted', UserChallengeCompletedSchema)

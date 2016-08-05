@@ -41,34 +41,34 @@ var UserSchema = new Schema({
         default: Date.now
     },
     
-    assignedSubmissionForReview : [{
-        type : Schema.ObjectId,
-        ref : "SubmissionDocument"
-    }],
+    // assignedSubmissionForReview : [{
+    //     type : Schema.ObjectId,
+    //     ref : "SubmissionDocument"
+    // }],
 
-    assignedSubmissionEvents : [{
-        type : Schema.ObjectId,
-        ref : "SubmissionEvent"
-    }]
+    // assignedSubmissionEvents : [{
+    //     type : Schema.ObjectId,
+    //     ref : "SubmissionEvent"
+    // }]
 
     
 });
 
-UserSchema.pre('save', function(next) {
-    if (this.password) {
-        this.salt = new
-            Buffer(crypto.randomBytes(16).toString('base64'), 'base64');
-        this.password = this.hashPassword(this.password);
-    }
-    next();
-});
-UserSchema.methods.hashPassword = function(password) {
-    return crypto.pbkdf2Sync(password, this.salt, 10000,
-        64).toString('base64');
-};
-UserSchema.methods.authenticate = function(password) {
-    return this.password === this.hashPassword(password);
-};
+// UserSchema.pre('save', function(next) {
+//     if (this.password) {
+//         this.salt = new
+//             Buffer(crypto.randomBytes(16).toString('base64'), 'base64');
+//         this.password = this.hashPassword(this.password);
+//     }
+//     next();
+// });
+// UserSchema.methods.hashPassword = function(password) {
+//     return crypto.pbkdf2Sync(password, this.salt, 10000,
+//         64).toString('base64');
+// };
+// UserSchema.methods.authenticate = function(password) {
+//     return this.password === this.hashPassword(password);
+// };
 
 UserSchema.statics.findUniqueUsername = function(username, suffix,
                                                  callback) {
