@@ -50,7 +50,7 @@ module.exports = function(messageType) {
             }];
 
         case type.GAME_RULE:
-            return "Awesome, now you need to complete the challenge in 48 hrs. to earn 10 points.";
+            return "Awesome, now you need to complete the challenge in 48 hrs. to earn 10 points.\nWe will review it once you post the image of cleaned area.";
 
         case type.CONFIRM_REPORT:
             return "👾\nPhew!! you found some garbage. We need to clean it.\nThanks anyways for reporting.";
