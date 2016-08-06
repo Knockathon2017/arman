@@ -3,7 +3,7 @@
 module.exports = {
 
     getRandomNumber: function(range) {
-        return Math.floor((Math.random() * range) + 1);
+        return Math.floor((Math.random() * range));
     }
 
 };

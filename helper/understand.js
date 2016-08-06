@@ -39,11 +39,10 @@ module.exports = {
 
             case 'text':
                 var replyMessage = reply(msgAbout);
-                console.log('dfs');
                 callback(helper.sendTextMessage(recipientId, replyMessage));
 
                 setTimeout(function() {
-                    if (replyMessage.indexOf('understand') > -1) {
+                    if (replyMessage && replyMessage.indexOf('understand') > -1) {
                         callback(helper.sendQuickReply(recipientId));
                     }
                 }, 1000);
