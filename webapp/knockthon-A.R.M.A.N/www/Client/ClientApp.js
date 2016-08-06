@@ -6,8 +6,7 @@ angular.module('Home', []);
 var ccWebApp = angular.module('gocleanapp', [    
     'Home',
     'ngRoute',    
-    'ngCookies',    
-    //'ui.materialize'
+    'ngCookies'
 ]);
 
 ccWebApp.config(['$routeProvider', '$locationProvider', '$httpProvider', function ($routeProvider, $locationProvider, $httpProvider) {

@@ -20,7 +20,7 @@ app.use("/assets/controllers",express.static(process.env.__dir+"/Client/Controll
 app.use("/assets/services",express.static(process.env.__dir+"/Client/Services"));
 app.use("/assets/shared",express.static(process.env.__dir+"/Client/Shared"));
 app.use("/assets/client",express.static(process.env.__dir+"/Client/Views"));
-app.use("/assets/font",express.static(process.env.__dir+"/Support/font"));
+app.use("/assets/fonts",express.static(process.env.__dir+"/Support/fonts"));
 
 
 //routing

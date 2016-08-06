@@ -25,13 +25,23 @@ module.exports = {
         for (var i = 0; i < messaging_events.length; i++) {
             var event = req.body.entry[0].messaging[i];
             var sender = event.sender.id;
+
             if (event.message && event.message.text) {
+                understand.get(sender, event.message.text, 'text', '', callback.sendMessage);
+
+            } else if (event.postback) {
+
+                /* all reply with user name  */
                 callback.getUser(sender).then(function(result) {
-                    understand.get(sender, JSON.parse(result.body).first_name + '\nYou typed - ' + event.message.text, callback.sendMessage);
+                    postback.handleAction(event, sender, JSON.parse(result.body).first_name, callback.sendMessage);
                 }).catch(function(err) {
                     console.log(err);
                 });
-
+            } else if (event.message && event.message.attachments[0].type == 'location') {
+                understand.get(sender, 'map', 'image', '', callback.sendMessage, event.message.attachments[0].payload.coordinates);
+            } else if (event.message && event.message.attachments[0].type == 'image') {
+                var url = event.message.attachments[0].payload.url;
+                understand.get(sender, 'image', 'button', '', callback.sendMessage);
             }
         }
 
@@ -76,4 +86,25 @@ var callback = {
 
     }
 
+};
+
+var postback = {
+
+    handleAction: function(event, sender, name, callback) {
+        var action = event.postback.payload;
+
+        switch (action) {
+            case 'USER_GREETING':
+                understand.get(sender, '', 'greeting', name, callback);
+                break;
+            case 'REPORT_GARBAGE_LOCATION':
+                understand.get(sender, 'report_garbage', 'text', name, callback);
+                break;
+            case 'COMPLETED_TASK':
+                understand.get(sender, 'completed_task', 'text', name, callback);
+                break;
+
+        }
+
+    }
 };
