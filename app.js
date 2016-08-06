@@ -15,7 +15,6 @@ var app = express();
 mongoose.connect('mongodb://moniv:12345678@ds139685.mlab.com:39685/bot_data_12', function(err, database) {
     if (err) {
         console.log(err);
-        process.exit(1);
     }
 
     // Save database object from the callback for reuse.
