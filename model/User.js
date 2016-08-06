@@ -25,11 +25,10 @@ var UserSchema = new Schema({
     },
 
     
-    coordinates: {
-        type: [Number],
-        index: '2dsphere'
-        
-    },
+    loc: {
+            type: { type: String, default:'Point' },
+    coordinates: { type: [Number], index: '2dsphere'}
+  },
     // password: {
     //     type: String,
     //     validate: [

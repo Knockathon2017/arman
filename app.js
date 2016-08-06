@@ -13,7 +13,7 @@ var db;
 var app = express();
 
 
-mongoose.connect('mongodb://localhost:27017/cms', function (err, database) {
+mongoose.connect('mongodb://localhost:27017/test', function (err, database) {
   if (err) {
     console.log(err);
     process.exit(1);
