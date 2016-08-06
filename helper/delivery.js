@@ -37,6 +37,7 @@ module.exports = {
 
     sendGenericMessage: function() {
 
+
     },
 
     sendVideoMessage: function(recipientId, url) {
@@ -69,7 +70,74 @@ module.exports = {
         return messageData;
     },
 
+    sendButtonMessage: function(recipientId, heading, payload) {
+        var messageData = {
+            recipient: {
+                id: recipientId
+            },
+            message: {
+                attachment: {
+                    type: "template",
+                    payload: {
+                        template_type: "button",
+                        text: heading,
+                        buttons: payload
+                    }
+                }
+            }
+        };
 
+        return messageData;
+    },
 
+    sendMultipleImages: function(recipientId, imageArray) {
+        var imgObjArray = [];
+
+        imageArray.forEach(function(obj) {
+            imgObjArray.push({
+                title: "Challenge",
+                subtitle: "Some Challenge",
+                item_url: "https://www.oculus.com/en-us/rift/",
+                image_url: obj
+            });
+        });
+
+        var messageData = {
+            recipient: {
+                id: recipientId
+            },
+            message: {
+                attachment: {
+                    type: "template",
+                    payload: {
+                        template_type: "generic",
+                        elements: imgObjArray
+                    }
+                }
+            }
+        };
+
+        return messageData;
+    },
+
+    sendWebLink: function(recipientId, payload) {
+        var messageData = {
+            recipient: {
+                id: recipientId
+            },
+            message: {
+                attachment: {
+                    type: "template",
+                    payload: {
+                        template_type: "button",
+                        text: "View Complete Statistics",
+                        buttons: payload
+                    }
+                }
+            }
+        };
+
+        return messageData;
+    }
 
 };
