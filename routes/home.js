@@ -41,7 +41,7 @@ module.exports = {
                 understand.get(sender, 'map', 'image', '', callback.sendMessage, event.message.attachments[0].payload.coordinates);
             } else if (event.message && event.message.attachments[0].type == 'image') {
                 var url = event.message.attachments[0].payload.url;
-                understand.get(sender, 'image', 'button', '', callback.sendMessage);
+                understand.get(sender, 'image', 'button', '', callback.sendMessage, url);
             }
         }
 

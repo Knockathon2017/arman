@@ -7,6 +7,7 @@ var apputil = require('./util');
 var natural = require('natural');
 var classifier = new natural.BayesClassifier();
 var _ = require('underscore');
+var imageToTextDecoder = require('image-to-text');
 //var wordnet = new natural.WordNet();
 
 var messageType = {
@@ -42,6 +43,7 @@ module.exports = {
 
             case 'image':
                 callback(helper.sendImageMessage(recipientId, msgAbout));
+                callback(helper.sendTypingMessage(recipientId));
                 callback(helper.sendTextMessage(recipientId, reply(messageType.GAME_RULE)));
                 break;
 
@@ -52,7 +54,17 @@ module.exports = {
 
             case 'button':
                 var replyMessage = reply(msgAbout); /* default behaviour */
-                callback(helper.sendButtonMessage(recipientId, 'Please select one of these', replyMessage));
+                callback(helper.sendTypingMessage(recipientId));
+
+                imageToTextDecoder.getKeywordsForImage({
+                    name: '',
+                    path: optional
+                }).then(function(keywords) {
+                    if (!(keywords.indexOf('garbage') > -1 || keywords.indexOf('waste') > -1))
+                        callback(helper.sendTextMessage(recipientId, 'Does not seem to be garbage'));
+                    callback(helper.sendButtonMessage(recipientId, 'Choose from the following', replyMessage));
+                });
+
                 break;
 
             case 'image_list':
