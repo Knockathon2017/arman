@@ -13,10 +13,10 @@ ccWebApp.config(['$routeProvider', '$locationProvider', '$httpProvider', functio
 
     $routeProvider    
          .when('/home', {
-             //controller: 'LoginController',
+             controller: 'HomeController',
              templateUrl: 'assets/client/home.html',
              hideMenus: true,
-             title: 'Login :: CASACLUE'
+             title: 'Home :: A.R.M.A.N.'
          })  
          .when('/default', {
              //controller: 'LoginController',

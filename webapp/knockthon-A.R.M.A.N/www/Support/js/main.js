@@ -39,17 +39,19 @@ jQuery(function($) {
  */
 (function() {
 
+debugger;
 	var bodyEl = document.body,
 		content = document.querySelector( '.contents' ),
 		openbtn = document.getElementById( 'open-button' ),
 		closebtn = document.getElementById( 'close-button' ),
 		isOpen = false;
-
+debugger;
 	function init() {
 		initEvents();
 	}
 
 	function initEvents() {
+		debugger;
 		openbtn.addEventListener( 'click', toggleMenu );
 		if( closebtn ) {
 			closebtn.addEventListener( 'click', toggleMenu );

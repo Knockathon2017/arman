@@ -2,12 +2,31 @@
 
 angular.module('Home')
 
-.factory('HomePageService',
+.factory('HomeService',
     ['$http', '$rootScope', '$timeout', '$cookieStore', '$location', '$q',
     function ($http, $rootScope, $timeout, $cookieStore, $location, $q) {
 
         var service = {};
 
+        service.submitdata = function(url,msg,name,email,callback){
+            $timeout(function () {
+                $http({
+                    url: url,
+                    method: "POST",
+                    params: { msg: msg, email: email, name:name },
+                    cache: false,
+                    headers: { 'Cache-Control': 'no-cache' }
+                })
+                        .success(function (response) {
+                            if (!response.success) {
+                            }
+                            callback(response);
+                        })
+                        .error(function () {
+
+                        })
+            }, 1000);
+        }
         service.GetData = function () {
             var deferred = $q.defer();
             return $http({
