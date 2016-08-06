@@ -27,7 +27,7 @@ var SERVER_PATH = process.env.SERVER_IMAGE_PATH || 'https://f976634d.ngrok.io/im
 
 module.exports = {
 
-    get: function (recipientId, recievedMessage, type, name, callback, optional) {
+    get: function(recipientId, recievedMessage, type, name, callback, optional) {
         var msgAbout = parser.whatTheMessageIsAllAbout(recievedMessage, optional);
 
         /* ugly conditions */
@@ -39,8 +39,10 @@ module.exports = {
 
             case 'text':
                 var replyMessage = reply(msgAbout);
+                console.log('dfs');
                 callback(helper.sendTextMessage(recipientId, replyMessage));
-                setTimeout(function () {
+
+                setTimeout(function() {
                     if (replyMessage.indexOf('understand') > -1) {
                         callback(helper.sendQuickReply(recipientId));
                     }
@@ -83,7 +85,7 @@ module.exports = {
 var parser = {
 
     /* we predict message either by type or by message content */
-    whatTheMessageIsAllAbout: function (text, optional) {
+    whatTheMessageIsAllAbout: function(text, optional) {
         text = text.toLowerCase();
 
         if (text.indexOf('play') > -1 || text.indexOf('start') > -1) {

@@ -1,6 +1,6 @@
 'use strict';
 
-var apputil = require('util');
+var apputil = require('./util');
 
 var type = {
     START_PLAY: 'start_play',
