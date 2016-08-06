@@ -39,6 +39,9 @@ module.exports = {
             case 'text':
                 var replyMessage = reply(msgAbout);
                 callback(helper.sendTextMessage(recipientId, replyMessage));
+                if (replyMessage.indexOf('Okay, we could not understand this message.') > -1) {
+                    callback(helper.sendQuickReply(recipientId));
+                }
                 break;
 
             case 'image':
@@ -83,7 +86,6 @@ var parser = {
             return messageType.START_PLAY;
         } else if (text == 'map') {
             //return SERVER_PATH + apputil.getRandomNumber(6) + '.jpg';
-            /* return near by areas */
             var lat = optional.lat - optional.lat / 10000;
             var long = optional.long - optional.long / 10000;
             return 'https://maps.googleapis.com/maps/api/staticmap?zoom=15&size=640x400&maptype=roadmap&markers=color:red|label:C|' + lat + ',' + long;

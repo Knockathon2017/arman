@@ -156,6 +156,26 @@ module.exports = {
         };
 
         return messageData;
+    },
+
+    sendQuickReply: function(recipientId) {
+        var messageData = {
+            recipient: {
+                id: recipientId
+            },
+            message: {
+                text: "Try below option",
+                metadata: "DEVELOPER_DEFINED_METADATA",
+                quick_replies: [{
+                    "content_type": "text",
+                    "title": "Start the game",
+                    "payload": "DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_ACTION"
+                }]
+            }
+        };
+
+        return messageData;
+
     }
 
 };
