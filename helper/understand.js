@@ -39,10 +39,12 @@ module.exports = {
             case 'text':
                 var replyMessage = reply(msgAbout);
                 callback(helper.sendTextMessage(recipientId, replyMessage));
-                console.log(replyMessage);
-                if (replyMessage.indexOf('Okay, we could not understand this message') > -1) {
-                    callback(helper.sendQuickReply(recipientId));
-                }
+                setTimeout(function() {
+                    if (replyMessage.indexOf('Okay, we could not understand this message') > -1) {
+                        callback(helper.sendQuickReply(recipientId));
+                    }
+                }, 1000);
+
                 break;
 
             case 'image':
