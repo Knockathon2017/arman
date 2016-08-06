@@ -1,6 +1,8 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
     crypto = require('crypto');
+
+
 var UserSchema = new Schema({   
     firstName: {
         type : String,
@@ -21,6 +23,13 @@ var UserSchema = new Schema({
         unique:true,
         required:true
     },
+
+    
+    coordinates: {
+        type: [Number],
+        index: '2dsphere'
+        
+    },
     // password: {
     //     type: String,
     //     validate: [
@@ -39,7 +48,7 @@ var UserSchema = new Schema({
     created: {
         type: Date,
         default: Date.now
-    },
+    }
     
     // assignedSubmissionForReview : [{
     //     type : Schema.ObjectId,
@@ -70,27 +79,29 @@ var UserSchema = new Schema({
 //     return this.password === this.hashPassword(password);
 // };
 
-UserSchema.statics.findUniqueUsername = function(username, suffix,
-                                                 callback) {
-    var _this = this;
-    var possibleUsername = username + (suffix || '');
-    _this.findOne({
-        username: possibleUsername
-    }, function(err, user) {
-        if (!err) {
-            if (!user) {
-                callback(possibleUsername);
-            } else {
-                return _this.findUniqueUsername(username, (suffix || 0) +
-                    1, callback);
-            }
-        } else {
-            callback(null);
-        }
-    });
-};
-UserSchema.set('toJSON', {
-    getters: true,
-    virtuals: true
-});
+// UserSchema.statics.findUniqueUsername = function(username, suffix,
+//                                                  callback) {
+//     var _this = this;
+//     var possibleUsername = username + (suffix || '');
+//     _this.findOne({
+//         username: possibleUsername
+//     }, function(err, user) {
+//         if (!err) {
+//             if (!user) {
+//                 callback(possibleUsername);
+//             } else {
+//                 return _this.findUniqueUsername(username, (suffix || 0) +
+//                     1, callback);
+//             }
+//         } else {
+//             callback(null);
+//         }
+//     });
+// };
+// UserSchema.set('toJSON', {
+//     getters: true,
+//     virtuals: true
+// });
 mongoose.model('User', UserSchema);
+
+module.exports = UserSchema;

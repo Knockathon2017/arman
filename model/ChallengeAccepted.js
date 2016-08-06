@@ -13,12 +13,12 @@ var ChallengeAcceptedSchema = new Schema({
 	},
 
 	challenge_geo: {
-		lat: {
-			type: Number
-		},
-		lon: {
-			type: Number
+		type: 'Point',
+		coordinates: {
+			type: [Number],
+			index: '2d'
 		}
+		
 	},
 
 	challenge_image: {

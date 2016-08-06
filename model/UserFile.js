@@ -15,14 +15,10 @@ var UserFileSchema = new Schema({
 	},
 
 	geo_location: {
-		lat: {
-			type: Number
-		},
-
-		lon: {
-			type: Number
-		}
-	},
+        type: [Number],
+        index: '2dsphere'
+        
+    },
 
 	created_date: {
 		type: Date,
