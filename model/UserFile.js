@@ -6,19 +6,21 @@ var UserFileSchema = new Schema({
 	username: {
 		type: String,
 		trim: true,
-		unique:true,
-        required:true		
+        required:true
 	},
 
 	file: {
 		type: String
 	},
 
-	geo_location: {
-        type: [Number],
-        index: '2dsphere'
-        
-    },
+	loc: {
+            type: { type: String, default:'Point' },
+    coordinates: { type: [Number], index: '2dsphere'}
+  },
+
+  image_type: {
+  	type: String
+  },
 
 	created_date: {
 		type: Date,
@@ -43,3 +45,5 @@ UserFileSchema.pre('save', function(next){
 
 
 mongoose.model('UserFile', UserFileSchema);
+
+module.exports = UserFileSchema;

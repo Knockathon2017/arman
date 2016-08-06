@@ -6,7 +6,7 @@ var UserPointsSchema = new Schema({
 	username: {
 		type: String,
 		trim: true,
-        unique:true,
+        
         required:true
 	},
 
@@ -41,3 +41,5 @@ UserPointsSchema.pre('save', function(next){
 });
 
 mongoose.model('UserPoints', UserPointsSchema);
+
+module.exports = UserPointsSchema;

@@ -29,78 +29,19 @@ var UserSchema = new Schema({
             type: { type: String, default:'Point' },
     coordinates: { type: [Number], index: '2dsphere'}
   },
-    // password: {
-    //     type: String,
-    //     validate: [
-    //         function(password) {
-    //             return password && password.length > 6;
-    //         }, 'Password should be longer'
-    //     ]},
-    // salt: {
-    //     type: String
-    // },
-    // provider: {
-    //     type: String,
-    //     required: 'Provider is required'
-    // },
-    // providerData: {},
+   
     created: {
         type: Date,
         default: Date.now
-    }
-    
-    // assignedSubmissionForReview : [{
-    //     type : Schema.ObjectId,
-    //     ref : "SubmissionDocument"
-    // }],
+    },
 
-    // assignedSubmissionEvents : [{
-    //     type : Schema.ObjectId,
-    //     ref : "SubmissionEvent"
-    // }]
+    userfile: { type: Schema.Types.ObjectId, ref: 'UserFile' }
+    
+
 
     
 });
 
-// UserSchema.pre('save', function(next) {
-//     if (this.password) {
-//         this.salt = new
-//             Buffer(crypto.randomBytes(16).toString('base64'), 'base64');
-//         this.password = this.hashPassword(this.password);
-//     }
-//     next();
-// });
-// UserSchema.methods.hashPassword = function(password) {
-//     return crypto.pbkdf2Sync(password, this.salt, 10000,
-//         64).toString('base64');
-// };
-// UserSchema.methods.authenticate = function(password) {
-//     return this.password === this.hashPassword(password);
-// };
-
-// UserSchema.statics.findUniqueUsername = function(username, suffix,
-//                                                  callback) {
-//     var _this = this;
-//     var possibleUsername = username + (suffix || '');
-//     _this.findOne({
-//         username: possibleUsername
-//     }, function(err, user) {
-//         if (!err) {
-//             if (!user) {
-//                 callback(possibleUsername);
-//             } else {
-//                 return _this.findUniqueUsername(username, (suffix || 0) +
-//                     1, callback);
-//             }
-//         } else {
-//             callback(null);
-//         }
-//     });
-// };
-// UserSchema.set('toJSON', {
-//     getters: true,
-//     virtuals: true
-// });
 mongoose.model('User', UserSchema);
 
 module.exports = UserSchema;

@@ -12,14 +12,10 @@ var LocationSchema = new Schema({
 		type: String
 	},
 
-	location_latLon : {
-		type: 'Point',
-		coordinates: {
-			type: [Number],
-			index: '2d'
-		}
-		
-	},
+	loc: {
+            type: { type: String, default:'Point' },
+    		coordinates: { type: [Number], index: '2dsphere'}
+  	},
 
 	location_image: {
 		type: String
@@ -36,11 +32,6 @@ var LocationSchema = new Schema({
 
 });
 
-Location.set('toJSON', {
-    getters: true,
-    virtuals: true
-});
-
 LocationSchema.pre('save', function(next){
   now = new Date();
   this.updated_date = now;
@@ -50,3 +41,4 @@ LocationSchema.pre('save', function(next){
   next();
 });
 mongoose.model('Location', LocationSchema);
+module.exports = LocationSchema;

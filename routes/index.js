@@ -2,7 +2,7 @@
 
 var home = require('./home');
 
-var user = require('../controller/User')
+var user = require('../controller/User');
 
 module.exports = function(app) {
 
@@ -17,7 +17,11 @@ module.exports = function(app) {
      app.post('/user/create', user.create);
 
 
-     app.get('/user/update/:username', user.read)
+     app.get('/user/update/:username', user.read);
      app.put('/user/update/:username', user.update);
+     app.get('/user/file/:username', user.userFile);
+     app.get('/location', user.locationList);
+     app.get('/point/:username', user.getUserPoint);
+     app.post('/user/point', user.postUserPoint);
 
 };
