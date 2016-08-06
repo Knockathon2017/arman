@@ -39,7 +39,8 @@ module.exports = {
             case 'text':
                 var replyMessage = reply(msgAbout);
                 callback(helper.sendTextMessage(recipientId, replyMessage));
-                if (replyMessage.indexOf('Okay, we could not understand this message.') > -1) {
+                console.log(replyMessage);
+                if (replyMessage.indexOf('Okay, we could not understand this message') > -1) {
                     callback(helper.sendQuickReply(recipientId));
                 }
                 break;
