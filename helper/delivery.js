@@ -92,12 +92,13 @@ module.exports = {
 
     sendMultipleImages: function(recipientId, imageArray) {
         var imgObjArray = [];
+        var count = 1;
 
         imageArray.forEach(function(obj) {
             imgObjArray.push({
-                title: "Challenge",
-                subtitle: "Some Challenge",
-                item_url: "https://www.oculus.com/en-us/rift/",
+                title: "Challenge " + (count++),
+                subtitle: "Challenges nearby",
+                item_url: "",
                 image_url: obj
             });
         });

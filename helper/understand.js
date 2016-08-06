@@ -27,7 +27,7 @@ var SERVER_PATH = process.env.SERVER_IMAGE_PATH || 'https://f976634d.ngrok.io/im
 
 module.exports = {
 
-    get: function(recipientId, recievedMessage, type, name, callback, optional) {
+    get: function (recipientId, recievedMessage, type, name, callback, optional) {
         var msgAbout = parser.whatTheMessageIsAllAbout(recievedMessage, optional);
 
         /* ugly conditions */
@@ -40,8 +40,8 @@ module.exports = {
             case 'text':
                 var replyMessage = reply(msgAbout);
                 callback(helper.sendTextMessage(recipientId, replyMessage));
-                setTimeout(function() {
-                    if (replyMessage.indexOf('Okay, we could not understand this message') > -1) {
+                setTimeout(function () {
+                    if (replyMessage.indexOf('understand') > -1) {
                         callback(helper.sendQuickReply(recipientId));
                     }
                 }, 1000);
@@ -66,7 +66,7 @@ module.exports = {
                 break;
 
             case 'image_list':
-                callback(helper.sendMultipleImages(recipientId, [SERVER_PATH + apputil.getRandomNumber(6) + '.jpg', SERVER_PATH + apputil.getRandomNumber(6) + '.jpg', SERVER_PATH + apputil.getRandomNumber(6) + '.jpg']));
+                callback(helper.sendMultipleImages(recipientId, [SERVER_PATH + apputil.getRandomNumber(6) + '.JPG', SERVER_PATH + apputil.getRandomNumber(6) + '.JPG', SERVER_PATH + apputil.getRandomNumber(6) + '.JPG']));
                 break;
 
             case 'web_link':
@@ -83,7 +83,7 @@ module.exports = {
 var parser = {
 
     /* we predict message either by type or by message content */
-    whatTheMessageIsAllAbout: function(text, optional) {
+    whatTheMessageIsAllAbout: function (text, optional) {
         text = text.toLowerCase();
 
         if (text.indexOf('play') > -1 || text.indexOf('start') > -1) {
@@ -105,7 +105,7 @@ var parser = {
             return messageType.STATS;
         } else if (text.indexOf('confirm_report') == 0) {
             return messageType.CONFIRM_REPORT;
-        } else if (text.indexOf('hi') > -1 || text.indexOf('hey') > -1, text.indexOf('hello')) {
+        } else if (text.indexOf('hi') > -1 || text.indexOf('hey') > -1 || text.indexOf('hello') > -1) {
             return messageType.GREETING;
         }
 

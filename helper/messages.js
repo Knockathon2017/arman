@@ -1,5 +1,7 @@
 'use strict';
 
+var apputil = require('util');
+
 var type = {
     START_PLAY: 'start_play',
     GREETING: 'greeting',
@@ -44,7 +46,7 @@ module.exports = function(messageType) {
             return [{
                 type: "web_url",
                 url: "https://www.oculus.com/en-us/rift/",
-                title: "Open Web URL"
+                title: "Open Main website"
             }];
 
         case type.GAME_RULE:
@@ -54,9 +56,15 @@ module.exports = function(messageType) {
             return "👾\nPhew!! you found some garbage. We need to clean it.\nThanks anyways for reporting.";
 
         default:
-            return "Okay, we could not understand this message";
+            return msgOptions.error[apputil.getRandomNumber(2)];
 
     }
 
+
+};
+
+var msgOptions = {
+
+    error: [":(\nOkay, we could not understand this message", ":( As we are in beta, we might fail to understand some messages.\nBut yes we will learn from it"]
 
 };
