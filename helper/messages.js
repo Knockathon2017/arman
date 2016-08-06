@@ -23,7 +23,7 @@ module.exports = function(messageType) {
             return 'Awesome :)\nCould you please share your location so that we can lookup nearby challenges.';
 
         case type.GREETING:
-            return 'Welcome, Here you can participate in various cleanup challenges.This is an interactive game which will help you to clean your neighbourhood in all with some fun.\nRule\n1.You will be assigned a task at a time based on selected location.\n2.Max. time limit to complete the task is ' + '48hrs from the time of accepting the task.\n3.After completing the task, you will be uploading clean area image/location of the assigned task location.\n4.We will credit 10 points after successfully completing the assigned task.\n\nAlso you can contribute in submitting any garbage' + ' image/location for which we will credit 5 points in your account.\n\nHapping Cleaning :)';
+            return 'Welcome, Here you can participate in various cleanup challenges.This is an interactive game which will help you to clean your neighbourhood in all with some fun.You will be assigned a task at a time based on selected location.\n\nHapping Cleaning :)';
 
         case type.BUTTON:
             return [{
