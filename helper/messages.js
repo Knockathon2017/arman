@@ -32,7 +32,7 @@ module.exports = function(messageType) {
                 payload: "COMPLETED_TASK"
             }, {
                 type: "postback",
-                title: "Confirm Report",
+                title: "Report Task",
                 payload: "CONFIRM_REPORT"
             }];
 
