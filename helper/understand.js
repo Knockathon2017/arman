@@ -55,16 +55,7 @@ module.exports = {
             case 'button':
                 var replyMessage = reply(msgAbout); /* default behaviour */
                 callback(helper.sendTypingMessage(recipientId));
-
-                imageToTextDecoder.getKeywordsForImage({
-                    name: '',
-                    path: optional
-                }).then(function(keywords) {
-                    if (!(keywords.indexOf('garbage') > -1 || keywords.indexOf('waste') > -1))
-                        callback(helper.sendTextMessage(recipientId, 'Does not seem to be garbage'));
-                    callback(helper.sendButtonMessage(recipientId, 'Choose from the following', replyMessage));
-                });
-
+                callback(helper.sendButtonMessage(recipientId, 'Choose from the following', replyMessage));
                 break;
 
             case 'image_list':
