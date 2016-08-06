@@ -33,6 +33,7 @@ module.exports = {
         /* ugly conditions */
         if (msgAbout == messageType.CHALLENGE_LIST) type = 'image_list';
         if (msgAbout == messageType.STATS) type = "web_link";
+        if (msgAbout == messageType.GREETING) type = "greeting";
 
         switch (type) {
 
@@ -55,7 +56,7 @@ module.exports = {
 
             case 'greeting':
                 var replyMessage = reply(messageType.GREETING); /* default behaviour */
-                callback(helper.sendTextMessage(recipientId, 'Hi ' + name + ',\n' + replyMessage));
+                callback(helper.sendTextMessage(recipientId, 'Hi ' + (name || '') + ',\n' + replyMessage));
                 break;
 
             case 'button':
@@ -104,6 +105,8 @@ var parser = {
             return messageType.STATS;
         } else if (text.indexOf('confirm_report') == 0) {
             return messageType.CONFIRM_REPORT;
+        } else if (text.indexOf('hi') > -1 || text.indexOf('hey') > -1, text.indexOf('hello')) {
+            return messageType.GREETING;
         }
 
         return null;
