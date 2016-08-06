@@ -12,7 +12,7 @@ var db;
 
 var app = express();
 
-mongoose.connect('mongodb://localhost:27017/test', function(err, database) {
+mongoose.connect('mongodb://moniv:12345678@ds139685.mlab.com:39685/bot_data_12', function(err, database) {
     if (err) {
         console.log(err);
     }
