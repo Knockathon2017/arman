@@ -15,6 +15,12 @@ var UserChallengeCompletedSchema = new Schema({
 		required: true
 	},
 
+	coordinates: {
+        type: [Number],
+        index: '2dsphere'
+        
+    },
+
 	created_date: {
 		type: Date,
 		default: Date.now

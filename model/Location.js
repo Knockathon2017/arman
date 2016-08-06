@@ -13,12 +13,12 @@ var LocationSchema = new Schema({
 	},
 
 	location_latLon : {
-		lat: {
-			type: String
-		},
-		lon: {
-			type: String
+		type: 'Point',
+		coordinates: {
+			type: [Number],
+			index: '2d'
 		}
+		
 	},
 
 	location_image: {

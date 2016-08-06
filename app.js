@@ -6,8 +6,25 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var mongoose   = require('mongoose');
+
+var db;
 
 var app = express();
+
+
+mongoose.connect('mongodb://localhost:27017/cms', function (err, database) {
+  if (err) {
+    console.log(err);
+    process.exit(1);
+  }
+
+  // Save database object from the callback for reuse.
+  db = database;
+  console.log("Database connection ready");
+
+});
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -26,6 +43,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 /* register all your routes */
 require('./routes/index')(app);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
