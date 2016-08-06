@@ -9,7 +9,8 @@ var type = {
     TASK_COMPLETED: 'task_completed',
     CHALLENGE_LIST: 'challenge_list',
     STATS: 'stats',
-    GAME_RULE: 'game_rule'
+    GAME_RULE: 'game_rule',
+    CONFIRM_REPORT: 'confirm_report'
 };
 
 /* defining all reply message */
@@ -17,7 +18,7 @@ module.exports = function(messageType) {
 
     switch (messageType) {
         case type.START_PLAY:
-            return 'Awesome\nCould you please share your location so that we can lookup near by challenges.';
+            return 'Awesome :)\nCould you please share your location so that we can lookup nearby challenges.';
 
         case type.GREETING:
             return 'Welcome, Here you can participate in various cleanup challenges.';
@@ -25,19 +26,19 @@ module.exports = function(messageType) {
         case type.BUTTON:
             return [{
                 type: "postback",
-                title: "Report Garbage",
-                payload: "REPORT_GARBAGE_LOCATION"
-            }, {
-                type: "postback",
                 title: "Task Completed",
                 payload: "COMPLETED_TASK"
+            }, {
+                type: "postback",
+                title: "Confirm Report",
+                payload: "CONFIRM_REPORT"
             }];
 
         case type.REPORTED_GARBAGE:
-            return 'Hmm, you can share the location of the place so that we can add it into our challenge list.';
+            return 'Hmmm, can you share the snapshot of the place so that we can add it in our challenge list.';
 
         case type.TASK_COMPLETED:
-            return 'Great!! That you have completed the task. We will verify and notify you.';
+            return 'Great!! That you have completed the task. We will let you know once verified.';
 
         case type.STATS:
             return [{
@@ -47,7 +48,10 @@ module.exports = function(messageType) {
             }];
 
         case type.GAME_RULE:
-            return "Awesome, now you need to complete the challenge in 2 days to earn 10 points."
+            return "Awesome, now you need to complete the challenge in 2 days to earn 10 points.";
+
+        case type.CONFIRM_REPORT:
+            return "👾\nPhew!! you found some garbage. We need to clean it.\nThanks anyways for reporting.";
 
         default:
             return "Okay, we could not understand this message";

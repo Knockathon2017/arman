@@ -138,6 +138,24 @@ module.exports = {
         };
 
         return messageData;
+    },
+
+    sendGIF: function(recipientId, url) {
+        var messageData = {
+            recipient: {
+                id: recipientId
+            },
+            message: {
+                attachment: {
+                    type: "image",
+                    payload: {
+                        url: url
+                    }
+                }
+            }
+        };
+
+        return messageData;
     }
 
 };

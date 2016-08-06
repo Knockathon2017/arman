@@ -103,6 +103,9 @@ var postback = {
             case 'COMPLETED_TASK':
                 understand.get(sender, 'completed_task', 'text', name, callback);
                 break;
+            case 'CONFIRM_REPORT':
+                understand.get(sender, 'confirm_report', 'text', name, callback);
+                break;
 
         }
 

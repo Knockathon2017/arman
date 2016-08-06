@@ -18,7 +18,8 @@ var messageType = {
     TASK_COMPLETED: 'task_completed',
     CHALLENGE_LIST: 'challenge_list',
     STATS: 'stats',
-    GAME_RULE: 'game_rule'
+    GAME_RULE: 'game_rule',
+    CONFIRM_REPORT: 'confirm_report'
 };
 
 var SERVER_PATH = process.env.SERVER_IMAGE_PATH || 'https://f976634d.ngrok.io/images/';
@@ -79,6 +80,7 @@ var parser = {
             return messageType.START_PLAY;
         } else if (text == 'map') {
             //return SERVER_PATH + apputil.getRandomNumber(6) + '.jpg';
+            /* return near by areas */
             var lat = optional.lat - optional.lat / 10000;
             var long = optional.long - optional.long / 10000;
             return 'https://maps.googleapis.com/maps/api/staticmap?zoom=15&size=640x400&maptype=roadmap&markers=color:red|label:C|' + lat + ',' + long;
@@ -92,6 +94,8 @@ var parser = {
             return messageType.CHALLENGE_LIST;
         } else if (text.indexOf('stats') > -1) {
             return messageType.STATS;
+        } else if (text.indexOf('confirm_report') == 0) {
+            return messageType.CONFIRM_REPORT;
         }
 
         return null;
