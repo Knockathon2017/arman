@@ -90,10 +90,10 @@ var parser = {
         if (text.indexOf('play') > -1 || text.indexOf('start') > -1) {
             return messageType.START_PLAY;
         } else if (text == 'map') {
-            //return SERVER_PATH + apputil.getRandomNumber(6) + '.jpg';
-            var lat = optional.lat - optional.lat / 10000;
-            var long = optional.long - optional.long / 10000;
-            return 'https://maps.googleapis.com/maps/api/staticmap?zoom=15&size=640x400&maptype=roadmap&markers=color:red|label:C|' + lat + ',' + long;
+            return SERVER_PATH + apputil.getRandomNumber(6) + '.JPG';
+            //var lat = optional.lat - optional.lat / 10000;
+            //var long = optional.long - optional.long / 10000;
+            //return 'https://maps.googleapis.com/maps/api/staticmap?zoom=15&size=640x400&maptype=roadmap&markers=color:red|label:C|' + lat + ',' + long;
         } else if (text == 'image') {
             return messageType.BUTTON;
         } else if (text == 'report_garbage') {

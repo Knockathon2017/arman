@@ -23,7 +23,7 @@ module.exports = function(messageType) {
             return 'Awesome :)\nCould you please share your location so that we can lookup nearby challenges.';
 
         case type.GREETING:
-            return 'Welcome, Here you can participate in various cleanup challenges.';
+            return 'Welcome, Here you can participate in various cleanup challenges.This is an interactive game which will help you to clean your neighbourhood in all with some fun.\nRule\n1.You will be assigned a task at a time based on selected location.\n2.Max. time limit to complete the task is 48hrs from the time of accepting the task.\n3.After completing the task, you will be uploading clean area image/location of the assigned task location.\n4.We will credit 10 points after successfully completing the assigned task.\n\nAlso you can contribute in submitting any garbage image/location for which we will credit 5 points in your account.\n\nHapping Cleaning :)';
 
         case type.BUTTON:
             return [{
@@ -40,17 +40,17 @@ module.exports = function(messageType) {
             return 'Hmmm, can you share the snapshot of the place so that we can add it in our challenge list.';
 
         case type.TASK_COMPLETED:
-            return 'Great!! That you have completed the task. We will let you know once verified.';
+            return 'Great!! That you have completed the task. We will let you know once verified.\nYou can also check all challennges around your area.';
 
         case type.STATS:
             return [{
                 type: "web_url",
-                url: "https://www.oculus.com/en-us/rift/",
+                url: "ttp://gocleanexzeoindia.com//",
                 title: "Open Main website"
             }];
 
         case type.GAME_RULE:
-            return "Awesome, now you need to complete the challenge in 2 days to earn 10 points.";
+            return "Awesome, now you need to complete the challenge in 48 hrs. to earn 10 points.";
 
         case type.CONFIRM_REPORT:
             return "👾\nPhew!! you found some garbage. We need to clean it.\nThanks anyways for reporting.";
